@@ -49,6 +49,7 @@ requirements:
     - fontconfig  # [linux]
     - imagemagick
     - pygments
+    - xkeyboard-config
 
 test:
   commands:

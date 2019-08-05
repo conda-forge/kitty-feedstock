@@ -40,6 +40,7 @@ requirements:
     - fontconfig  # [linux]
     - imagemagick
     - pygments
+    - libcanberra
   run:
     - python
     - harfbuzz >=1.5.0
@@ -50,6 +51,7 @@ requirements:
     - imagemagick
     - pygments
     - xkeyboard-config
+    - libcanberra
 
 test:
   commands:

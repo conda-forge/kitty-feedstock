@@ -15,7 +15,7 @@ fontconfig:
 freetype:
 - 2.9.1
 libpng:
-- 1.6.35
+- '1.6'
 pin_run_as_build:
   dbus:
     max_pin: x

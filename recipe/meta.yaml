@@ -1,5 +1,5 @@
 {% set name = "kitty" %}
-{% set version = "0.14.6" %}
+{% set version = "0.15.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/kovidgoyal/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.xz
-  sha256: f07e0b2398b21e546ead8bb7755b140ee2d9cd1be10b720263b2578a0396a9b8
+  sha256: d48cfc5f489e17642baec84fa91aa484e088152166c7a419e08394e3ac61161f
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win or py2k or osx]
   ignore_run_exports:
     - imagemagick

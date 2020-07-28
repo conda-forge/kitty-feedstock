@@ -5,7 +5,7 @@ Home: https://sw.kovidgoyal.net/kitty/
 
 Package license: GPL-3.0
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: A cross-platform, fast, feature full, GPU based terminal emulator
 

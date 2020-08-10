@@ -10,7 +10,7 @@ source:
   sha256: b077b34f3773f698063b85ec96ff9c4598ad5ab86c8580cdda4ec551df121e09
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or py2k or osx]
   ignore_run_exports:
     - imagemagick

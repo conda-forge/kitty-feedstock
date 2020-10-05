@@ -41,6 +41,7 @@ requirements:
     - imagemagick
     - pygments
     - libcanberra
+    - lcms2
   run:
     - python
     - harfbuzz >=1.5.0
@@ -52,6 +53,7 @@ requirements:
     - pygments
     - xkeyboard-config
     - libcanberra
+    - lcms2
 
 test:
   commands:

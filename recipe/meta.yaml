@@ -61,7 +61,7 @@ test:
 
 about:
   home: https://sw.kovidgoyal.net/kitty/
-  license: GPL-3.0
+  license: GPL-3.0-only
   license_family: GPL
   license_file: LICENSE
   summary: A cross-platform, fast, feature full, GPU based terminal emulator

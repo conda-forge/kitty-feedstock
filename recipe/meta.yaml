@@ -67,3 +67,7 @@ about:
   summary: A cross-platform, fast, feature full, GPU based terminal emulator
   doc_url: https://sw.kovidgoyal.net/kitty/
   dev_url: https://github.com/kovidgoyal/kitty
+
+extras:
+  recipe-maintainers:
+    - CJ-Wright

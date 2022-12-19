@@ -1,7 +1,7 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '10'
+- '11'
 cdt_name:
 - cos6
 channel_sources:
@@ -13,24 +13,14 @@ dbus:
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 fontconfig:
-- '2.13'
+- '2'
 freetype:
 - '2'
 libpng:
 - '1.6'
 pin_run_as_build:
-  dbus:
-    max_pin: x
-  fontconfig:
-    max_pin: x
-  freetype:
-    max_pin: x
-  libpng:
-    max_pin: x.x
   python:
     min_pin: x.x
-    max_pin: x.x
-  zlib:
     max_pin: x.x
 python:
 - 3.9.* *_cpython

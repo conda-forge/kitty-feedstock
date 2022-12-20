@@ -12,8 +12,6 @@ source:
 build:
   number: 2
   skip: true  # [win or py2k or osx]
-  ignore_run_exports:
-    - imagemagick
 
 requirements:
   build:
@@ -32,8 +30,7 @@ requirements:
     - xorg-glproto  # [linux]
     - mesalib  # [linux]
     - libxkbcommon  # [linux]
-    # the following are listed as runtime deps, but seem to be needed at build
-    - harfbuzz >=1.5.0
+    - harfbuzz
     - zlib
     - libpng
     - freetype  # [linux]
@@ -44,16 +41,10 @@ requirements:
     - lcms2
   run:
     - python
-    - harfbuzz >=1.5.0
-    - zlib
-    - libpng
-    - freetype  # [linux]
-    - fontconfig  # [linux]
     - imagemagick
     - pygments
     - xkeyboard-config
     - libcanberra
-    - lcms2
 
 test:
   commands:

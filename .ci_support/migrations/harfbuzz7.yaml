@@ -3,5 +3,5 @@ __migrator:
   kind: version
   migration_number: 1
 harfbuzz:
-- '6'
-migrator_ts: 1671377767.6027732
+- '7'
+migrator_ts: 1681100035.1884027

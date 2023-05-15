@@ -10,8 +10,8 @@ source:
   sha256: 5190f5eeb4653ac2ca02885623fd3aa10da1c82260c5b9866614ef4fd7427856
 
 build:
-  number: 2
-  skip: true  # [win or py2k or osx]
+  number: 3
+  skip: true  # [win or osx]
 
 requirements:
   build:

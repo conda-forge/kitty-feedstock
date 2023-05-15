@@ -1,5 +1,5 @@
 {% set name = "kitty" %}
-{% set version = "0.23.1" %}
+{% set version = "0.26.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/kovidgoyal/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.xz
-  sha256: 5190f5eeb4653ac2ca02885623fd3aa10da1c82260c5b9866614ef4fd7427856
+  sha256: 5544a580314fec7711187ce28162909b5ecff6780071444fe96fb97f8be5c9ad
 
 build:
-  number: 3
-  skip: true  # [win or py2k or osx]
+  number: 0
+  skip: true  # [win or osx]
 
 requirements:
   build:

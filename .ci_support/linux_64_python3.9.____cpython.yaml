@@ -1,9 +1,13 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '12'
+- '13'
+c_stdlib:
+- sysroot
+c_stdlib_version:
+- '2.17'
 cdt_name:
-- cos6
+- conda
 channel_sources:
 - conda-forge
 channel_targets:
@@ -11,15 +15,19 @@ channel_targets:
 dbus:
 - '1'
 docker_image:
-- quay.io/condaforge/linux-anvil-cos7-x86_64
+- quay.io/condaforge/linux-anvil-x86_64:alma9
 fontconfig:
 - '2'
 freetype:
 - '2'
 harfbuzz:
-- '8'
+- '10'
+lcms2:
+- '2'
 libpng:
 - '1.6'
+mesalib:
+- '25.0'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -29,4 +37,4 @@ python:
 target_platform:
 - linux-64
 zlib:
-- '1.2'
+- '1'

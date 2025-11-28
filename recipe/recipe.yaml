@@ -9,7 +9,7 @@ package:
   version: ${{ version }}
 
 source:
-  - url: https://github.com/kovidgoyal/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.xz
+  - url: https://github.com/kovidgoyal/${{ name }}/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.xz
     sha256: bf62c5a25188b823b6a8c2ab3182c278d74d5bea9855ca5172af09bc5a969b67
 
 build:
@@ -18,7 +18,7 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}
+    - ${{ compiler('c') }}
     - pkg-config
     - make
   host:

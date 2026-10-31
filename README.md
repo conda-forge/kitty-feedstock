@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/kitty-feedstock
 
 Home: https://sw.kovidgoyal.net/kitty/
 
-Package license: GPL-3.0-only
+Package license: GPL-3.0-only AND MIT
 
 Summary: A cross-platform, fast, feature full, GPU based terminal emulator
 

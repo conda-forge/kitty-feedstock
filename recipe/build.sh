@@ -9,4 +9,4 @@ go-licenses save ./tools/cmd --save_path=library_licenses
 
 # add bash completions
 mkdir -p "${PREFIX}/share/bash-completion/completions"
-"${PREFIX}/bin/kitten" completion bash > "${PREFIX}/share/bash-completion/completions/kitty"
+"${PREFIX}/bin/kitten" __complete__ setup bash > "${PREFIX}/share/bash-completion/completions/kitty"

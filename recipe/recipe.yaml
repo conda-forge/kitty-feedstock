@@ -3,6 +3,7 @@ schema_version: 1
 
 context:
   version: "0.44.0"
+  nerd_fonts_version: "3.4.0"
 
 package:
   name: kitty
@@ -11,6 +12,12 @@ package:
 source:
   - url: https://github.com/kovidgoyal/kitty/releases/download/v${{ version }}/kitty-${{ version }}.tar.xz
     sha256: bf62c5a25188b823b6a8c2ab3182c278d74d5bea9855ca5172af09bc5a969b67
+  - url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v${{ nerd_fonts_version }}/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf
+    sha256: f0f624d9b474bea1662cf7e862d44aebe1ae1f6c7f9cb7a0ca5d0e5ac9561c60
+    target_directory: fonts
+  - url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v${{ nerd_fonts_version }}/patched-fonts/NerdFontsSymbolsOnly/LICENSE
+    sha256: 84a7a98c82140fb12c37fe42b93805baa16024cb3e5acc599b7ffe612c55d847
+    target_directory: fonts
 
 build:
   number: 0
@@ -42,11 +49,12 @@ requirements:
     - libpng
     - freetype
     - fontconfig
+    - expat
     - imagemagick
     - pygments
     - libcanberra
     - lcms2
-    - libxxhash
+    - xxhash
     - simde
     - openssl
     - cairo
@@ -66,9 +74,10 @@ tests:
 
 about:
   homepage: https://sw.kovidgoyal.net/kitty/
-  license: GPL-3.0-only
+  license: GPL-3.0-only AND MIT
   license_file:
     - LICENSE
+    - fonts/LICENSE
     - library_licenses/
   summary: A cross-platform, fast, feature full, GPU based terminal emulator
   documentation: https://sw.kovidgoyal.net/kitty/

@@ -5,7 +5,8 @@ export PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:${PREFIX}/share/pkgconfig:${PKG_
 export CFLAGS="${CFLAGS} -I ${PREFIX}/include/freetype2 -I ${PREFIX}/include/harfbuzz"
 export GOTOOLCHAIN=local
 $PYTHON setup.py linux-package --prefix="$PREFIX" --update-check-interval=0
-go-licenses save ./tools/cmd --save_path=library_licenses
+# Kitty's own LICENSE is included separately; collect only third-party licenses.
+go-licenses save ./tools/cmd --save_path=library_licenses --ignore=github.com/kovidgoyal/kitty
 
 # add bash completions
 mkdir -p "${PREFIX}/share/bash-completion/completions"

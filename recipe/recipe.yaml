@@ -9,7 +9,7 @@ package:
   version: ${{ version }}
 
 source:
-  - url: https://github.com/kovidgoyal/${{ name }}/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.xz
+  - url: https://github.com/kovidgoyal/kitty/releases/download/v${{ version }}/kitty-${{ version }}.tar.xz
     sha256: bf62c5a25188b823b6a8c2ab3182c278d74d5bea9855ca5172af09bc5a969b67
 
 build:
@@ -19,8 +19,12 @@ build:
 requirements:
   build:
     - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('go-cgo') }}
+    - go-licenses
     - pkg-config
     - make
+    - ncurses
   host:
     - python
     - dbus
@@ -42,6 +46,12 @@ requirements:
     - pygments
     - libcanberra
     - lcms2
+    - libxxhash
+    - simde
+    - openssl
+    - cairo
+    - wayland
+    - wayland-protocols
   run:
     - python
     - imagemagick
@@ -50,14 +60,16 @@ requirements:
     - libcanberra
 
 tests:
-  script:
-    - kitty --help
+  - script:
+      - kitty --help
+      - kitten --help
 
 about:
   homepage: https://sw.kovidgoyal.net/kitty/
   license: GPL-3.0-only
-  license_family: GPL
-  license_file: LICENSE
+  license_file:
+    - LICENSE
+    - library_licenses/
   summary: A cross-platform, fast, feature full, GPU based terminal emulator
   documentation: https://sw.kovidgoyal.net/kitty/
   repository: https://github.com/kovidgoyal/kitty

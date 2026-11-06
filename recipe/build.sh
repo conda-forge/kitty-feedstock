@@ -6,7 +6,16 @@ export CFLAGS="${CFLAGS} -I ${PREFIX}/include/freetype2 -I ${PREFIX}/include/har
 export GOTOOLCHAIN=local
 # conda-forge's shader-slang omits the optional slang-glslang optimizer backend.
 export SLANGC="slangc -O0"
-$PYTHON setup.py linux-package --prefix="$PREFIX" --update-check-interval=0
+if [[ "$target_platform" == osx-* ]]; then
+    $PYTHON setup.py kitty.app --update-check-interval=0
+    mkdir -p "${PREFIX}/Applications" "${PREFIX}/bin" "${PREFIX}/share/terminfo"
+    cp -a kitty.app "${PREFIX}/Applications/"
+    ln -s ../Applications/kitty.app/Contents/MacOS/kitty "${PREFIX}/bin/kitty"
+    ln -s ../Applications/kitty.app/Contents/MacOS/kitten "${PREFIX}/bin/kitten"
+    cp -a kitty.app/Contents/Resources/terminfo/. "${PREFIX}/share/terminfo/"
+else
+    $PYTHON setup.py linux-package --prefix="$PREFIX" --update-check-interval=0
+fi
 # Kitty's own LICENSE is included separately; collect only third-party licenses.
 # Chroma's COPYING combines MIT and OFL text, which go-licenses cannot classify.
 go-licenses save ./tools/cmd --save_path=library_licenses --ignore=github.com/kovidgoyal/kitty,github.com/alecthomas/chroma/v2

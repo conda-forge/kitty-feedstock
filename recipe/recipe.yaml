@@ -12,6 +12,8 @@ package:
 source:
   - url: https://github.com/kovidgoyal/kitty/releases/download/v${{ version }}/kitty-${{ version }}.tar.xz
     sha256: 01f20d0b253af0a7e041394a501adc83483f2eee01faf607a933c028343ab71a
+    patches:
+      - portable-macos-build.patch
   - url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v${{ nerd_fonts_version }}/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf
     sha256: f0f624d9b474bea1662cf7e862d44aebe1ae1f6c7f9cb7a0ca5d0e5ac9561c60
     target_directory: fonts
@@ -21,7 +23,7 @@ source:
 
 build:
   number: 0
-  skip: not linux or match(python, '<3.12')
+  skip: win or match(python, '<3.12')
 
 requirements:
   build:
@@ -35,43 +37,67 @@ requirements:
     - shader-slang
   host:
     - python
-    - dbus
-    - xorg-libxcursor
-    - xorg-libxrandr
-    - xorg-libxi
-    - xorg-libxinerama
-    - xorg-xineramaproto
-    - libglu
-    - xorg-glproto
-    - mesalib
-    - libxkbcommon
+    - if: linux
+      then: dbus
+    - if: linux
+      then: xorg-libxcursor
+    - if: linux
+      then: xorg-libxrandr
+    - if: linux
+      then: xorg-libxi
+    - if: linux
+      then: xorg-libxinerama
+    - if: linux
+      then: xorg-xineramaproto
+    - if: linux
+      then: libglu
+    - if: linux
+      then: xorg-glproto
+    - if: linux
+      then: mesalib
+    - if: linux
+      then: libxkbcommon
     - harfbuzz
     - zlib
     - libpng
-    - freetype
-    - fontconfig
-    - expat
+    - if: linux
+      then: freetype
+    - if: linux
+      then: fontconfig
+    - if: linux
+      then: expat
     - imagemagick
     - pygments
-    - libcanberra
+    - if: linux
+      then: libcanberra
     - lcms2
     - xxhash
     - simde
     - openssl
-    - cairo
-    - wayland
-    - wayland-protocols
+    - if: linux
+      then: cairo
+    - if: linux
+      then: wayland
+    - if: linux
+      then: wayland-protocols
   run:
     - python
     - imagemagick
     - pygments
-    - xkeyboard-config
-    - libcanberra
+    - if: linux
+      then: xkeyboard-config
+    - if: linux
+      then: libcanberra
 
 tests:
   - script:
       - kitty --help
       - kitten --help
+  - if: osx
+    then:
+      script:
+        - test -f "${PREFIX}/Applications/kitty.app/Contents/Info.plist"
+        - test -s "${PREFIX}/Applications/kitty.app/Contents/Resources/kitty/shaders/graphics.spv"
 
 about:
   homepage: https://sw.kovidgoyal.net/kitty/

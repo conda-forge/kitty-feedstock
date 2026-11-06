@@ -1,3 +1,5 @@
 c_stdlib_version:
   - if: linux
     then: "2.28"
+  - if: osx
+    then: "13.0"

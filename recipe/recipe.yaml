@@ -31,7 +31,7 @@ requirements:
     - ${{ stdlib('c') }}
     - ${{ compiler('go-cgo') }}
     - go-licenses
-    - pkg-config
+    - pkgconf
     - make
     - ncurses
     - shader-slang
@@ -39,57 +39,42 @@ requirements:
     - python
     - if: match(python, '>=3.15')
       then: libpython ${{ python }}
-    - if: linux
-      then: dbus
-    - if: linux
-      then: xorg-libxcursor
-    - if: linux
-      then: xorg-libxrandr
-    - if: linux
-      then: xorg-libxi
-    - if: linux
-      then: xorg-libxinerama
-    - if: linux
-      then: xorg-xineramaproto
-    - if: linux
-      then: libglu
-    - if: linux
-      then: xorg-glproto
-    - if: linux
-      then: mesalib
-    - if: linux
-      then: libxkbcommon
     - harfbuzz
     - zlib
     - libpng
-    - if: linux
-      then: freetype
-    - if: linux
-      then: fontconfig
-    - if: linux
-      then: expat
     - imagemagick
     - pygments
-    - if: linux
-      then: libcanberra
     - lcms2
     - xxhash
     - simde
     - openssl
     - if: linux
-      then: cairo
-    - if: linux
-      then: wayland
-    - if: linux
-      then: wayland-protocols
+      then:
+        - dbus
+        - xorg-libxcursor
+        - xorg-libxrandr
+        - xorg-libxi
+        - xorg-libxinerama
+        - xorg-xineramaproto
+        - libglu
+        - xorg-glproto
+        - mesalib
+        - libxkbcommon
+        - freetype
+        - fontconfig
+        - expat
+        - libcanberra
+        - cairo
+        - wayland
+        - wayland-protocols
   run:
     - python
     - imagemagick
     - pygments
     - if: linux
-      then: xkeyboard-config
-    - if: linux
-      then: libcanberra
+      then:
+        - xkeyboard-config
+        - libcanberra
 
 tests:
   - script:
@@ -97,9 +82,10 @@ tests:
       - kitten --help
   - if: osx
     then:
-      script:
-        - test -f "${PREFIX}/Applications/kitty.app/Contents/Info.plist"
-        - test -s "${PREFIX}/Applications/kitty.app/Contents/Resources/kitty/shaders/graphics.spv"
+      package_contents:
+        files:
+          - Applications/kitty.app/Contents/Info.plist
+          - Applications/kitty.app/Contents/Resources/kitty/shaders/graphics.spv
 
 about:
   homepage: https://sw.kovidgoyal.net/kitty/

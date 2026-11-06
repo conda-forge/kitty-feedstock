@@ -8,6 +8,15 @@ export GOTOOLCHAIN=local
 export SLANGC="slangc -O0"
 if [[ "$target_platform" == osx-* ]]; then
     $PYTHON setup.py kitty.app --update-check-interval=0
+    # The built-in relinker can update signatures but cannot create their load
+    # commands. Intel builds are unsigned, so sign nested code before the app.
+    while IFS= read -r -d '' binary; do
+        if [[ "$binary" != kitty.app/Contents/MacOS/kitty ]] && \
+           [[ "$(/usr/bin/file -b "$binary")" == Mach-O* ]]; then
+            /usr/bin/codesign --force --sign - "$binary"
+        fi
+    done < <(find kitty.app -type f -print0)
+    /usr/bin/codesign --force --deep --sign - kitty.app
     mkdir -p "${PREFIX}/Applications" "${PREFIX}/bin" "${PREFIX}/share/terminfo"
     cp -a kitty.app "${PREFIX}/Applications/"
     ln -s ../Applications/kitty.app/Contents/MacOS/kitty "${PREFIX}/bin/kitty"

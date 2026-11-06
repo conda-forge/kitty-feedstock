@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source run_conda_forge_build_setup
+
+# Sign each Mach-O independently during relinking. Apple's codesign also checks
+# sibling executables in the app bundle, which may still be getting relinked.
+export RATTLER_BUILD_BUILTIN_CODESIGN=1

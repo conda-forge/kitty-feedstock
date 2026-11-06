@@ -1,0 +1,11 @@
+--- a/setup.py
++++ b/setup.py
+@@ -2571,7 +2571,7 @@
+             args.prefix = 'kitty.app'
+             if os.path.exists(args.prefix):
+                 shutil.rmtree(args.prefix)
+-            build(args)
++            build(args, native_optimizations=False)
+             package(args, bundle_type='macos-package')
+             print('kitty.app successfully built!')
+         elif args.action == 'export-ci-bundles':

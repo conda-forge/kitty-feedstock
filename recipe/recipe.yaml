@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.44.0"
+  version: "0.50.0"
   nerd_fonts_version: "3.4.0"
 
 package:
@@ -11,7 +11,9 @@ package:
 
 source:
   - url: https://github.com/kovidgoyal/kitty/releases/download/v${{ version }}/kitty-${{ version }}.tar.xz
-    sha256: bf62c5a25188b823b6a8c2ab3182c278d74d5bea9855ca5172af09bc5a969b67
+    sha256: 01f20d0b253af0a7e041394a501adc83483f2eee01faf607a933c028343ab71a
+    patches:
+      - portable-macos-build.patch
   - url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v${{ nerd_fonts_version }}/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf
     sha256: f0f624d9b474bea1662cf7e862d44aebe1ae1f6c7f9cb7a0ca5d0e5ac9561c60
     target_directory: fonts
@@ -21,7 +23,7 @@ source:
 
 build:
   number: 0
-  skip: not linux
+  skip: win or match(python, '<3.12')
 
 requirements:
   build:
@@ -29,48 +31,61 @@ requirements:
     - ${{ stdlib('c') }}
     - ${{ compiler('go-cgo') }}
     - go-licenses
-    - pkg-config
+    - pkgconf
     - make
     - ncurses
+    - shader-slang
   host:
     - python
-    - dbus
-    - xorg-libxcursor
-    - xorg-libxrandr
-    - xorg-libxi
-    - xorg-libxinerama
-    - xorg-xineramaproto
-    - libglu
-    - xorg-glproto
-    - mesalib
-    - libxkbcommon
+    - if: match(python, '>=3.15')
+      then: libpython ${{ python }}
     - harfbuzz
     - zlib
     - libpng
-    - freetype
-    - fontconfig
-    - expat
     - imagemagick
     - pygments
-    - libcanberra
     - lcms2
     - xxhash
     - simde
     - openssl
-    - cairo
-    - wayland
-    - wayland-protocols
+    - if: linux
+      then:
+        - dbus
+        - xorg-libxcursor
+        - xorg-libxrandr
+        - xorg-libxi
+        - xorg-libxinerama
+        - xorg-xineramaproto
+        - libglu
+        - xorg-glproto
+        - mesalib
+        - libxkbcommon
+        - freetype
+        - fontconfig
+        - expat
+        - libcanberra
+        - cairo
+        - wayland
+        - wayland-protocols
   run:
     - python
     - imagemagick
     - pygments
-    - xkeyboard-config
-    - libcanberra
+    - if: linux
+      then:
+        - xkeyboard-config
+        - libcanberra
 
 tests:
   - script:
       - kitty --help
       - kitten --help
+  - if: osx
+    then:
+      package_contents:
+        files:
+          - Applications/kitty.app/Contents/Info.plist
+          - Applications/kitty.app/Contents/Resources/kitty/shaders/graphics.spv
 
 about:
   homepage: https://sw.kovidgoyal.net/kitty/

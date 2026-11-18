@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.50.0"
+  version: "0.51.0"
   nerd_fonts_version: "3.4.0"
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   - url: https://github.com/kovidgoyal/kitty/releases/download/v${{ version }}/kitty-${{ version }}.tar.xz
-    sha256: 01f20d0b253af0a7e041394a501adc83483f2eee01faf607a933c028343ab71a
+    sha256: 084807db816a3de9f1a253eff232f17fe9f76ccd77da8101511f830431097ecf
     patches:
       - portable-macos-build.patch
   - url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v${{ nerd_fonts_version }}/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf

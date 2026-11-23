@@ -35,6 +35,8 @@ requirements:
     - make
     - ncurses
     - shader-slang
+    # Remove this pin once shader-slang is rebuilt against the newer cmark-gfm ABI.
+    - cmark-gfm ==0.29.0.gfm.13
   host:
     - python
     - if: match(python, '>=3.15')

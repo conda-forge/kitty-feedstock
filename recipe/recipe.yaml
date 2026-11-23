@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.51.0"
+  version: "0.51.1"
   nerd_fonts_version: "3.4.0"
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   - url: https://github.com/kovidgoyal/kitty/releases/download/v${{ version }}/kitty-${{ version }}.tar.xz
-    sha256: 084807db816a3de9f1a253eff232f17fe9f76ccd77da8101511f830431097ecf
+    sha256: d10050949feed8bfa584eb28c2a458996aa6e96d9c6b199f8f03980e37c42312
     patches:
       - portable-macos-build.patch
   - url: https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v${{ nerd_fonts_version }}/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf
@@ -35,6 +35,8 @@ requirements:
     - make
     - ncurses
     - shader-slang
+    # Remove this pin once shader-slang is rebuilt against the newer cmark-gfm ABI.
+    - cmark-gfm ==0.29.0.gfm.13
   host:
     - python
     - if: match(python, '>=3.15')
